@@ -1,4 +1,4 @@
-FROM node:alpine AS build
+FROM node:16-alpine3.12 AS build
 
 # Extend PATH
 ENV PATH=$PATH:/node_modules/.bin
