@@ -27,8 +27,9 @@ COPY --from=build /manuka-client/build /var/www/html
 
 # Add htpasswd (workaround until compose has proper build secrets https://pythonspeed.com/articles/build-secrets-docker-compose/)
 RUN apk add --no-cache --update apache2-utils
-ARG NGINX_USERNAME
-ARG NGINX_PASSWORD
-RUN htpasswd -c -b /etc/nginx/.htpasswd $NGINX_USERNAME $NGINX_PASSWORD
 
+#RUN htpasswd -c -b /etc/nginx/.htpasswd $NGINX_USERNAME $NGINX_PASSWORD
+#ENTRYPOINT [ "tail", "-f", "/dev/null" ]
+
+#ENTRYPOINT ["htpasswd -c -b /etc/nginx/.htpasswd $NGINX_USERNAME $NGINX_PASSWORD", "nginx -g daemon off;"]
 CMD ["nginx", "-g", "daemon off;"]
